@@ -10,8 +10,6 @@ open fin
 namespace first_order
 namespace language
 namespace term
-namespace relations
-namespace sum
 
 
 inductive tarski_relations : ℕ → Type 0
@@ -54,22 +52,14 @@ definition fin1 : fin 2 := 1 % 2
 
 
 
-definition tarski_axiom1_open {α} : tarski_language.bounded_formula α (fin 2) :=
+definition tarski_axiom1_open {α}: tarski_language.bounded_formula α 2 :=
   line_cong' (var fin0) (var fin1) (var fin1) (var fin0)
 
-definition tarski_axiom1 : tarski_language.formula (fin 0) :=
+definition tarski_axiom1 {α} : tarski_language.formula α :=
   bounded_formula.alls tarski_axiom1_open
 
-/-
-definition tarski_axiom1 {α} : tarski_language.formula α :=
- first_order.language.bounded_formula.alls
-  (line_cong' _ _ _ _)
--/
-/-
-definition line_cong' {α} {n : ℕ } 
-  (t1 t2 t3 t4 : tarski_language.term α) :
-  tarski_language.formula α :=
-    first_order.language.relations.formula
-      tarski_relations.line_cong
-      ![t1,t2,t3,t4]
--/
+end term
+end language
+end first_order
+
+
